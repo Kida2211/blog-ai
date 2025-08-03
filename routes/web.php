@@ -4,10 +4,15 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AIController;
+
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/ai-form', [AIController::class, 'showForm'])->name('ai.form');
+Route::post('/ai-generate', [AIController::class, 'generate'])->name('ai.generate');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
